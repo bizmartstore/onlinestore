@@ -36,7 +36,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 160px;
+      width: 180px; /* slightly wider for icon + text */
       height: 60px;
       background-color: white;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -49,6 +49,12 @@
       font-weight: bold;
       color: black;
       cursor: pointer;
+      gap: 8px; /* space between icon and text */
+    }
+
+    .fixed-rectangle img {
+      width: 24px;
+      height: 24px;
     }
 
     /* Vertical tool list */
@@ -88,19 +94,20 @@
       allowfullscreen>
     </iframe>
 
-    <!-- Floating Open Tools button -->
+    <!-- Floating Open Tools button with text + icon -->
     <div class="fixed-rectangle" id="openToolsBtn">
+      <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Chat Icon">
       Open Tools
     </div>
 
     <!-- Vertical tool list -->
-    <div class="tool-list" id="toolList">
-      <!-- Tawk.to Chat at the top -->
-      <div class="tool-item" id="tawkTool" title="Support Chat">
-        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Chat">
-      </div>
-    </div>
+<div class="tool-list" id="toolList">
+  <!-- Tawk.to Chat at the top -->
+  <div class="tool-item" id="tawkTool" title="Support Chat">
+    <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Chat">
   </div>
+</div>
+
 
   <!-- Hide Tawk.to widget on load -->
   <script type="text/javascript">
