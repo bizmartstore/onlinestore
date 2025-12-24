@@ -33,31 +33,33 @@
 
     /* Floating Open Tools button */
     .fixed-rectangle {
-      position: fixed;
-      bottom: 20px;
-      right: 18px;
-      width: 140px;
-      height: 60px;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 0 10px;
-      gap: 10px;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      color: black;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+  position: fixed;
+  bottom: 20px;
+  right: 18px;
+  width: 140px;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;       /* vertically center */
+  justify-content: center;   /* horizontally center everything */
+  padding: 0 10px;
+  gap: 8px;                  /* space between icon and text */
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 
     .fixed-rectangle img {
-      width: 24px;
-      height: 24px;
-    }
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
 
     /* Vertical tool list */
     .tool-list {
@@ -182,6 +184,7 @@
   </script>
 </body>
 </html>
+
 
 
 
