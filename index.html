@@ -3,7 +3,6 @@
 <head>
   <base target="_top">
 
-  <!-- ===== SOCIAL MEDIA PREVIEW (MESSENGER / FACEBOOK) ===== -->
   <meta property="og:title" content="BizMart Online School Store" />
   <meta property="og:description" content="Your one-stop online school store for quality supplies and essentials." />
   <meta property="og:url" content="https://bizmartstore.github.io/onlinestore/" />
@@ -13,13 +12,11 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="BizMart" />
 
-  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="BizMart Online School Store" />
   <meta name="twitter:description" content="Your one-stop online school store for quality supplies and essentials." />
   <meta name="twitter:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
 
-  <!-- Mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <style>
@@ -106,7 +103,6 @@
       height: 24px;
     }
 
-    /* Mobile adjustments */
     @media (max-width: 768px) {
       .fixed-rectangle {
         width: 120px;
@@ -134,32 +130,136 @@
         height: 20px;
       }
     }
+
+    /* Bank Modal */
+    #bankModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #bankModalContent {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
+  max-height: 90%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+    #closeBankModal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #bankIframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      flex: 1;
+    }
+
+    /* Code input screen */
+    #codeScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  z-index: 5;
+}
+
+    #codeScreen input {
+      padding: 10px;
+      font-size: 18px;
+      width: 60%;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #codeScreen button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+    }
+
+    #codeError {
+      color: red;
+      font-size: 14px;
+      display: none;
+    }
   </style>
 </head>
 
 <body>
   <div class="iframe-container">
-    <iframe
-      class="main-iframe"
-      src="https://my-site-dnd500bh-virtualis016.wix-vibe.com"
-      allowfullscreen>
-    </iframe>
+    <iframe class="main-iframe" src="https://my-site-dnd500bh-virtualis016.wix-vibe.com" allowfullscreen></iframe>
 
-    <!-- Floating Open Tools button -->
     <div class="fixed-rectangle" id="openToolsBtn">
       <img src="https://i.ibb.co/B5DCfVSJ/rating-2016378.png" alt="Tools">
       Open Tools
     </div>
 
-    <!-- Tool list -->
     <div class="tool-list" id="toolList">
+      <div class="tool-item" id="bankTool" title="BizMart Bank">
+        <img src="https://i.ibb.co/jvfMPwZF/bank-3846904.png" alt="Bank">
+      </div>
       <div class="tool-item" id="tawkTool" title="Support Chat">
         <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png" alt="Chat">
       </div>
     </div>
   </div>
 
-  <!-- Hide Tawk.to widget on load -->
+  <!-- Bank Modal -->
+  <div id="bankModal">
+    <div id="bankModalContent">
+      <button id="closeBankModal">X</button>
+
+      <!-- Code input screen -->
+      <div id="codeScreen">
+        <p>Enter the 6-digit code to access BizMart Bank:</p>
+        <input type="text" id="bankCode" maxlength="6" placeholder="Enter code">
+        <button id="submitCode">Submit</button>
+        <div id="codeError">Incorrect code. Try again.</div>
+      </div>
+
+      <!-- Bank iframe (hidden until correct code) -->
+      <iframe id="bankIframe" src="https://bizmartstore.github.io/digitalbank/" style="display:none;"></iframe>
+    </div>
+  </div>
+
   <script>
     var Tawk_API = Tawk_API || {};
     Tawk_API.onLoad = function () {
@@ -167,7 +267,6 @@
     };
   </script>
 
-  <!-- Tawk.to Script -->
   <script>
     (function () {
       var s1 = document.createElement("script"),
@@ -185,6 +284,17 @@
     const toolList = document.getElementById("toolList");
     const tawkTool = document.getElementById("tawkTool");
 
+    const bankTool = document.getElementById("bankTool");
+    const bankModal = document.getElementById("bankModal");
+    const closeBankModal = document.getElementById("closeBankModal");
+    const codeScreen = document.getElementById("codeScreen");
+    const bankIframe = document.getElementById("bankIframe");
+    const bankCodeInput = document.getElementById("bankCode");
+    const submitCode = document.getElementById("submitCode");
+    const codeError = document.getElementById("codeError");
+
+    const correctCode = "080108";
+
     openToolsBtn.addEventListener("click", () => {
       toolList.style.display =
         toolList.style.display === "flex" ? "none" : "flex";
@@ -195,6 +305,33 @@
         Tawk_API.toggle();
       } else {
         alert("Chat widget is loading. Please wait.");
+      }
+    });
+
+    bankTool.addEventListener("click", () => {
+      bankModal.style.display = "flex";
+      codeScreen.style.display = "flex";
+      bankIframe.style.display = "none";
+      bankCodeInput.value = "";
+      codeError.style.display = "none";
+    });
+
+    closeBankModal.addEventListener("click", () => {
+      bankModal.style.display = "none";
+    });
+
+    submitCode.addEventListener("click", () => {
+      if (bankCodeInput.value === correctCode) {
+        codeScreen.style.display = "none";
+        bankIframe.style.display = "flex";
+      } else {
+        codeError.style.display = "block";
+      }
+    });
+
+    bankCodeInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        submitCode.click();
       }
     });
   </script>
