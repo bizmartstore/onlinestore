@@ -31,26 +31,29 @@
       pointer-events: auto;
     }
 
-    /* Floating Open Tools button */
     .fixed-rectangle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 180px;
-      height: 60px;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      color: black;
-      cursor: pointer;
-      gap: 8px;
-    }
+  position: fixed;
+  bottom: 20px;
+  left: calc(100% - 30px); /* LEFT edge fixed */
+  transform: translateX(-100%);
+  height: 60px;
+  padding: 0 14px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+
 
     .fixed-rectangle img {
       width: 24px;
@@ -94,27 +97,31 @@
       allowfullscreen>
     </iframe>
 
-    <!-- Floating Open Tools button -->
+    <!-- Floating Open Tools button with text + icon -->
     <div class="fixed-rectangle" id="openToolsBtn">
       <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Chat Icon">
       Open Tools
     </div>
 
     <!-- Vertical tool list -->
-    <div class="tool-list" id="toolList">
-      <!-- Tawk.to Chat at the top -->
-      <div class="tool-item" id="tawkTool" title="Support Chat">
-        <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Chat">
-      </div>
-    </div>
+<div class="tool-list" id="toolList">
+  <!-- Tawk.to Chat at the top -->
+  <div class="tool-item" id="tawkTool" title="Support Chat">
+    <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Chat">
   </div>
+</div>
 
-  <!-- Tawk.to initial script -->
+
+  <!-- Hide Tawk.to widget on load -->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {};
     Tawk_API.onLoad = function() {
       Tawk_API.hideWidget(); // Hide chat widget initially
     };
+  </script>
+
+  <!-- Tawk.to Script -->
+  <script type="text/javascript">
     (function(){
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
       s1.async=true;
@@ -135,34 +142,12 @@
       toolList.style.display = toolList.style.display === 'flex' ? 'none' : 'flex';
     });
 
-    // Toggle Tawk.to chat
+    // Toggle tawk.to chat
     tawkTool.addEventListener('click', () => {
-      if (Tawk_API && typeof Tawk_API.toggle === 'function') {
-        Tawk_API.toggle();
+      if (Tawk_API && Tawk_API.toggle) {
+        Tawk_API.toggle(); // open or close the chat
       } else {
         alert("Chat widget is still loading. Please wait a moment.");
-      }
-    });
-
-    // Listen for messages from iframe (CheckoutPage)
-    window.addEventListener('message', function(event) {
-      const { type, payload } = event.data || {};
-      if (type === 'NEW_ORDER' && payload) {
-        if (Tawk_API && typeof Tawk_API.addEvent === 'function') {
-          Tawk_API.addEvent('new_order', {
-            title: '🛒 New Order Placed',
-            customer: payload.customerName,
-            email: payload.email,
-            phone: payload.phone,
-            items: payload.items,
-            total: `₱${payload.total}`,
-            delivery: payload.delivery,
-            status: payload.status,
-            time: payload.orderDate
-          });
-        } else {
-          console.warn("Tawk_API.addEvent not available yet.");
-        }
       }
     });
   </script>
