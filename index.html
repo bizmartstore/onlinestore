@@ -1,8 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <base target="_top">
+
+  <!-- ===== SOCIAL MEDIA PREVIEW (MESSENGER / FACEBOOK) ===== -->
+  <meta property="og:title" content="BizMart Online School Store" />
+  <meta property="og:description" content="Your one-stop online school store for quality supplies and essentials." />
+  <meta property="og:url" content="https://bizmartstore.github.io/onlinestore/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="BizMart" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BizMart Online School Store" />
+  <meta name="twitter:description" content="Your one-stop online school store for quality supplies and essentials." />
+  <meta name="twitter:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
+
+  <!-- Mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <style>
     html, body {
       margin: 0;
@@ -33,44 +52,41 @@
 
     /* Floating Open Tools button */
     .fixed-rectangle {
-  position: fixed;
-  bottom: 20px;
-  right: 18px;
-  width: 140px;
-  height: 60px;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: flex;
-  align-items: center;       /* vertically center */
-  justify-content: center;   /* horizontally center everything */
-  padding: 0 10px;
-  gap: 8px;                  /* space between icon and text */
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      width: 140px;
+      height: 60px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      gap: 8px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
     .fixed-rectangle img {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-}
+      width: 24px;
+      height: 24px;
+    }
 
     /* Vertical tool list */
     .tool-list {
       position: fixed;
       bottom: 90px;
       right: 20px;
-      display: flex;
+      display: none;
       flex-direction: column;
       gap: 10px;
       z-index: 1000;
-      display: none; /* hidden initially */
     }
 
     .tool-item {
@@ -96,7 +112,6 @@
         width: 120px;
         height: 48px;
         font-size: 14px;
-        padding: 0 8px;
       }
 
       .fixed-rectangle img {
@@ -121,22 +136,23 @@
     }
   </style>
 </head>
+
 <body>
   <div class="iframe-container">
-    <iframe class="main-iframe" 
-      src="https://my-site-dnd500bh-virtualis016.wix-vibe.com" 
+    <iframe
+      class="main-iframe"
+      src="https://my-site-dnd500bh-virtualis016.wix-vibe.com"
       allowfullscreen>
     </iframe>
 
-    <!-- Floating Open Tools button with text + icon -->
+    <!-- Floating Open Tools button -->
     <div class="fixed-rectangle" id="openToolsBtn">
-      <img src="https://i.ibb.co/B5DCfVSJ/rating-2016378.png" alt="Chat Icon">
+      <img src="https://i.ibb.co/B5DCfVSJ/rating-2016378.png" alt="Tools">
       Open Tools
     </div>
 
-    <!-- Vertical tool list -->
+    <!-- Tool list -->
     <div class="tool-list" id="toolList">
-      <!-- Tawk.to Chat at the top -->
       <div class="tool-item" id="tawkTool" title="Support Chat">
         <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png" alt="Chat">
       </div>
@@ -144,49 +160,43 @@
   </div>
 
   <!-- Hide Tawk.to widget on load -->
-  <script type="text/javascript">
+  <script>
     var Tawk_API = Tawk_API || {};
-    Tawk_API.onLoad = function() {
-      Tawk_API.hideWidget(); // Hide chat widget initially
+    Tawk_API.onLoad = function () {
+      Tawk_API.hideWidget();
     };
   </script>
 
   <!-- Tawk.to Script -->
-  <script type="text/javascript">
-    (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/694abe6662c26a197cb86e4c/1jd5vfg4d';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
+  <script>
+    (function () {
+      var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = "https://embed.tawk.to/694abe6662c26a197cb86e4c/1jd5vfg4d";
+      s1.charset = "UTF-8";
+      s1.setAttribute("crossorigin", "*");
+      s0.parentNode.insertBefore(s1, s0);
     })();
   </script>
 
   <script>
-    const openToolsBtn = document.getElementById('openToolsBtn');
-    const toolList = document.getElementById('toolList');
-    const tawkTool = document.getElementById('tawkTool');
+    const openToolsBtn = document.getElementById("openToolsBtn");
+    const toolList = document.getElementById("toolList");
+    const tawkTool = document.getElementById("tawkTool");
 
-    // Toggle vertical tool list
-    openToolsBtn.addEventListener('click', () => {
-      toolList.style.display = toolList.style.display === 'flex' ? 'none' : 'flex';
+    openToolsBtn.addEventListener("click", () => {
+      toolList.style.display =
+        toolList.style.display === "flex" ? "none" : "flex";
     });
 
-    // Toggle tawk.to chat
-    tawkTool.addEventListener('click', () => {
+    tawkTool.addEventListener("click", () => {
       if (Tawk_API && Tawk_API.toggle) {
-        Tawk_API.toggle(); // open or close the chat
+        Tawk_API.toggle();
       } else {
-        alert("Chat widget is still loading. Please wait a moment.");
+        alert("Chat widget is loading. Please wait.");
       }
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
