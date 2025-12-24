@@ -33,26 +33,29 @@
     }
 
     .fixed-rectangle {
-  position: fixed;
-  bottom: 20px;
-  left: calc(100% - 28px); /* LEFT edge fixed */
-  transform: translateX(-100%);
-  height: 60px;
-  padding: 0 14px;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  gap: 8px;
-  white-space: nowrap;
+    position: fixed;
+    bottom: 20px;   /* distance from bottom */
+    right: 30px;    /* increase this to move it left */
+    width: 125px;   
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    padding: 0 10px;           
+    gap: 10px;                  
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
 }
+
+
+
+
 
 
 
