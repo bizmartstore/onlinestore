@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,26 +31,28 @@
       pointer-events: auto;
     }
 
+    /* Floating Open Tools button */
     .fixed-rectangle {
-    position: fixed;
-    bottom: 20px;   /* distance from bottom */
-    right: 18px;    /* increase this to move it left */
-    width: 128px;   
-    height: 60px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; 
-    padding: 0 10px;           
-    gap: 10px;                  
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-}
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      width: 135px;
+      height: 60px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 10px;
+      gap: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
     .fixed-rectangle img {
       width: 24px;
@@ -86,6 +87,36 @@
       width: 24px;
       height: 24px;
     }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .fixed-rectangle {
+        width: 100px;
+        height: 48px;
+        font-size: 14px;
+        padding: 0 8px;
+      }
+
+      .fixed-rectangle img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .tool-list {
+        bottom: 75px;
+        right: 15px;
+      }
+
+      .tool-item {
+        width: 45px;
+        height: 45px;
+      }
+
+      .tool-item img {
+        width: 20px;
+        height: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -102,13 +133,13 @@
     </div>
 
     <!-- Vertical tool list -->
-<div class="tool-list" id="toolList">
-  <!-- Tawk.to Chat at the top -->
-  <div class="tool-item" id="tawkTool" title="Support Chat">
-    <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Chat">
+    <div class="tool-list" id="toolList">
+      <!-- Tawk.to Chat at the top -->
+      <div class="tool-item" id="tawkTool" title="Support Chat">
+        <img src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" alt="Chat">
+      </div>
+    </div>
   </div>
-</div>
-
 
   <!-- Hide Tawk.to widget on load -->
   <script type="text/javascript">
@@ -151,14 +182,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
