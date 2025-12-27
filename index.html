@@ -8,74 +8,52 @@
   <meta property="og:url" content="https://bizmartstore.github.io/onlinestore/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="BizMart" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="BizMart Online School Store" />
-  <meta name="twitter:description" content="Your one-stop online school store for quality supplies and essentials." />
-  <meta name="twitter:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      touch-action: none;
     }
 
     .iframe-container {
-      position: relative;
       width: 100%;
       height: 100%;
-      overflow: hidden;
+      position: relative;
     }
 
     .main-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       border: none;
-      pointer-events: auto;
     }
 
-    /* Floating Open Tools button */
     .fixed-rectangle {
       position: fixed;
       bottom: 20px;
       right: 18px;
       width: 140px;
       height: 60px;
-      background-color: white;
+      background: white;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 10px;
       gap: 8px;
-      border-radius: 5px;
-      font-size: 16px;
       font-weight: bold;
-      color: black;
       cursor: pointer;
-      transition: all 0.2s ease;
+      border-radius: 5px;
     }
 
     .fixed-rectangle img {
       width: 24px;
-      height: 24px;
     }
 
-    /* Vertical tool list */
     .tool-list {
       position: fixed;
       bottom: 90px;
@@ -89,7 +67,7 @@
     .tool-item {
       width: 50px;
       height: 50px;
-      background-color: white;
+      background: white;
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -99,260 +77,194 @@
     }
 
     .tool-item img {
-      width: 24px;
-      height: 24px;
+      width: 26px;
     }
 
-    @media (max-width: 768px) {
-      .fixed-rectangle {
-        width: 120px;
-        height: 48px;
-        font-size: 14px;
-      }
-
-      .fixed-rectangle img {
-        width: 20px;
-        height: 20px;
-      }
-
-      .tool-list {
-        bottom: 75px;
-        right: 15px;
-      }
-
-      .tool-item {
-        width: 45px;
-        height: 45px;
-      }
-
-      .tool-item img {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    /* Bank Modal */
-    #bankModal {
+    /* Modal Shared */
+    .modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.6);
+      inset: 0;
+      background: rgba(0,0,0,0.6);
       z-index: 2000;
       justify-content: center;
       align-items: center;
     }
 
-    #bankModalContent {
-      position: relative;
+    .modal-content {
       width: 90%;
       height: 90%;
-      max-width: 1200px;
-      max-height: 90%;
       background: white;
       border-radius: 10px;
       overflow: hidden;
+      position: relative;
       display: flex;
       flex-direction: column;
     }
 
-    #closeBankModal {
+    .close-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      z-index: 10;
       background: red;
       color: white;
       border: none;
       padding: 5px 10px;
-      font-size: 16px;
-      border-radius: 5px;
       cursor: pointer;
+      border-radius: 5px;
+      z-index: 10;
     }
 
-    #bankIframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      flex: 1;
-    }
-
-    /* Code input screen */
-    #codeScreen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
+    .code-screen {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 12px;
+      height: 100%;
       text-align: center;
-      z-index: 5;
       padding: 20px;
-      box-sizing: border-box;
     }
 
-    #codeScreen img {
-      width: 150px;
-      max-width: 40%;
+    .code-screen img {
+      width: 120px;
     }
 
-    #codeScreen h2 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    #codeScreen input {
+    .code-screen input {
       padding: 10px;
       font-size: 18px;
-      width: 60%;
+      width: 200px;
       text-align: center;
-      border-radius: 5px;
-      border: 1px solid #ccc;
     }
 
-    #codeScreen button {
+    .code-screen button {
       padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      border: none;
-      background-color: #28a745;
+      background: #28a745;
       color: white;
+      border: none;
+      cursor: pointer;
     }
 
-    #codeError {
+    .error {
       color: red;
-      font-size: 14px;
+      display: none;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
       display: none;
     }
   </style>
 </head>
 
 <body>
-  <div class="iframe-container">
-    <iframe class="main-iframe" src="https://my-site-dnd500bh-virtualis016.wix-vibe.com" allowfullscreen></iframe>
+<div class="iframe-container">
+  <iframe class="main-iframe" src="https://my-site-dnd500bh-virtualis016.wix-vibe.com"></iframe>
 
-    <div class="fixed-rectangle" id="openToolsBtn">
-      <img src="https://i.ibb.co/B5DCfVSJ/rating-2016378.png" alt="Tools">
-      Open Tools
-    </div>
-
-    <div class="tool-list" id="toolList">
-      <div class="tool-item" id="bankTool" title="BizMart Bank">
-        <img src="https://i.ibb.co/jvfMPwZF/bank-3846904.png" alt="Bank">
-      </div>
-      <div class="tool-item" id="tawkTool" title="Support Chat">
-        <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png" alt="Chat">
-      </div>
-    </div>
+  <div class="fixed-rectangle" id="openToolsBtn">
+    <img src="https://i.ibb.co/B5DCfVSJ/rating-2016378.png">
+    Open Tools
   </div>
 
-  <!-- Bank Modal -->
-  <div id="bankModal">
-    <div id="bankModalContent">
-      <button id="closeBankModal">X</button>
+  <div class="tool-list" id="toolList">
+    <!-- LMS -->
+    <div class="tool-item" id="lmsTool" title="BizMart LMS">
+      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png">
+    </div>
 
-      <!-- Code input screen -->
-      <div id="codeScreen">
-        <!-- Logo -->
-        <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/kv07z7xo918a/bizmart_bank_logo-removebg-preview.png" alt="BizMart Bank Logo">
-        <!-- Tagline -->
-        <h2>Fast. Easy. ABM Banking</h2>
-        <!-- Instruction -->
-        <p>Enter the 6-digit code to access BizMart Bank:</p>
-        <input type="text" id="bankCode" maxlength="6" placeholder="Enter code">
-        <button id="submitCode">Submit</button>
-        <div id="codeError">Incorrect code. Try again.</div>
-      </div>
+    <!-- Bank -->
+    <div class="tool-item" id="bankTool" title="BizMart Bank">
+      <img src="https://i.ibb.co/jvfMPwZF/bank-3846904.png">
+    </div>
 
-      <!-- Bank iframe (hidden until correct code) -->
-      <iframe id="bankIframe" src="https://bizmartstore.github.io/digitalbank/" style="display:none;"></iframe>
+    <!-- Chat -->
+    <div class="tool-item" id="tawkTool" title="Support Chat">
+      <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png">
     </div>
   </div>
+</div>
 
-  <script>
-    var Tawk_API = Tawk_API || {};
-    Tawk_API.onLoad = function () {
-      Tawk_API.hideWidget();
-    };
-  </script>
+<!-- LMS MODAL -->
+<div class="modal" id="lmsModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="lmsModal.style.display='none'">X</button>
 
-  <script>
-    (function () {
-      var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = "https://embed.tawk.to/694abe6662c26a197cb86e4c/1jd5vfg4d";
-      s1.charset = "UTF-8";
-      s1.setAttribute("crossorigin", "*");
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
+    <div class="code-screen" id="lmsCodeScreen">
+      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png">
+      <h2>Smart. Organized. Student Learning</h2>
+      <p>Enter the 6-digit code to access <b>BizMart LMS</b></p>
+      <input id="lmsCode" maxlength="6">
+      <button onclick="checkLMS()">Submit</button>
+      <div class="error" id="lmsError">Incorrect code</div>
+    </div>
 
-  <script>
-    const openToolsBtn = document.getElementById("openToolsBtn");
-    const toolList = document.getElementById("toolList");
-    const tawkTool = document.getElementById("tawkTool");
+    <iframe id="lmsIframe" src="https://bizmart.dpdns.org/"></iframe>
+  </div>
+</div>
 
-    const bankTool = document.getElementById("bankTool");
-    const bankModal = document.getElementById("bankModal");
-    const closeBankModal = document.getElementById("closeBankModal");
-    const codeScreen = document.getElementById("codeScreen");
-    const bankIframe = document.getElementById("bankIframe");
-    const bankCodeInput = document.getElementById("bankCode");
-    const submitCode = document.getElementById("submitCode");
-    const codeError = document.getElementById("codeError");
+<!-- BANK MODAL -->
+<div class="modal" id="bankModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="bankModal.style.display='none'">X</button>
 
-    const correctCode = "080108";
+    <div class="code-screen" id="bankCodeScreen">
+      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/kv07z7xo918a/bizmart_bank_logo-removebg-preview.png">
+      <h2>Fast. Easy. ABM Banking</h2>
+      <p>Enter the 6-digit code to access BizMart Bank</p>
+      <input id="bankCode" maxlength="6">
+      <button onclick="checkBank()">Submit</button>
+      <div class="error" id="bankError">Incorrect code</div>
+    </div>
 
-    openToolsBtn.addEventListener("click", () => {
-      toolList.style.display =
-        toolList.style.display === "flex" ? "none" : "flex";
-    });
+    <iframe id="bankIframe" src="https://bizmartstore.github.io/digitalbank/"></iframe>
+  </div>
+</div>
 
-    tawkTool.addEventListener("click", () => {
-      if (Tawk_API && Tawk_API.toggle) {
-        Tawk_API.toggle();
-      } else {
-        alert("Chat widget is loading. Please wait.");
-      }
-    });
+<script>
+  const openToolsBtn = document.getElementById("openToolsBtn");
+  const toolList = document.getElementById("toolList");
 
-    bankTool.addEventListener("click", () => {
-      bankModal.style.display = "flex";
-      codeScreen.style.display = "flex";
-      bankIframe.style.display = "none";
-      bankCodeInput.value = "";
-      codeError.style.display = "none";
-    });
+  openToolsBtn.onclick = () => {
+    toolList.style.display = toolList.style.display === "flex" ? "none" : "flex";
+  };
 
-    closeBankModal.addEventListener("click", () => {
-      bankModal.style.display = "none";
-    });
+  const lmsModal = document.getElementById("lmsModal");
+  const bankModal = document.getElementById("bankModal");
 
-    submitCode.addEventListener("click", () => {
-      if (bankCodeInput.value === correctCode) {
-        codeScreen.style.display = "none";
-        bankIframe.style.display = "flex";
-      } else {
-        codeError.style.display = "block";
-      }
-    });
+  document.getElementById("lmsTool").onclick = () => {
+    lmsModal.style.display = "flex";
+    lmsCode.value = "";
+    lmsError.style.display = "none";
+    lmsIframe.style.display = "none";
+    lmsCodeScreen.style.display = "flex";
+  };
 
-    bankCodeInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        submitCode.click();
-      }
-    });
-  </script>
+  document.getElementById("bankTool").onclick = () => {
+    bankModal.style.display = "flex";
+    bankCode.value = "";
+    bankError.style.display = "none";
+    bankIframe.style.display = "none";
+    bankCodeScreen.style.display = "flex";
+  };
+
+  function checkLMS() {
+    if (lmsCode.value === "330506") {
+      lmsCodeScreen.style.display = "none";
+      lmsIframe.style.display = "block";
+    } else {
+      lmsError.style.display = "block";
+    }
+  }
+
+  function checkBank() {
+    if (bankCode.value === "080108") {
+      bankCodeScreen.style.display = "none";
+      bankIframe.style.display = "block";
+    } else {
+      bankError.style.display = "block";
+    }
+  }
+</script>
 </body>
 </html>
