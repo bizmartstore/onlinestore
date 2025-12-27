@@ -177,6 +177,27 @@
       color: red;
       display: none;
     }
+
+    /* LMS Modal Input Styling */
+    #lmsCode {
+      padding: 10px;
+      font-size: 18px;
+      width: 60%;
+      text-align: center;
+    }
+
+    #submitLmsCode {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #lmsCodeError {
+      color: red;
+      display: none;
+    }
   </style>
 </head>
 
@@ -235,17 +256,18 @@
     <div id="lmsCodeScreen" style="position:absolute; inset:0; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:15px; text-align:center; padding:20px;">
       <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png" style="width:150px;">
       <h2>BizMart LMS</h2>
+      <p>Enter the 6-digit code to access BizMart LMS:</p>
       <p><em>"Empowering learning beyond the classroom"</em></p>
       <input type="text" id="lmsCode" maxlength="6">
       <button id="submitLmsCode">Submit</button>
-      <div id="lmsCodeError" style="color:red; display:none;">Incorrect code. Try again.</div>
+      <div id="lmsCodeError">Incorrect code. Try again.</div>
     </div>
 
     <iframe id="lmsIframe" src="https://bizmart.dpdns.org/" style="display:none; width:100%; height:100%; border:none;"></iframe>
   </div>
 </div>
 
-<!-- Tawk.to (UNCHANGED) -->
+<!-- Tawk.to -->
 <script>
   var Tawk_API = Tawk_API || {};
   Tawk_API.onLoad = function () {
