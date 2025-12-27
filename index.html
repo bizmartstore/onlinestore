@@ -191,15 +191,18 @@
   </div>
 
   <div class="tool-list" id="toolList">
-    <!-- LMS Icon at top -->
+
+    <!-- LMS TOOL -->
     <div class="tool-item" id="lmsTool" title="BizMart LMS">
       <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png">
     </div>
 
+    <!-- Bank TOOL -->
     <div class="tool-item" id="bankTool" title="BizMart Bank">
       <img src="https://i.ibb.co/jvfMPwZF/bank-3846904.png">
     </div>
 
+    <!-- Tawk TOOL -->
     <div class="tool-item" id="tawkTool" title="Support Chat">
       <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png">
     </div>
@@ -224,6 +227,25 @@
   </div>
 </div>
 
+<!-- LMS Modal -->
+<div id="lmsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000; justify-content:center; align-items:center;">
+  <div style="position:relative; width:90%; height:90%; max-width:1200px; background:white; border-radius:10px; overflow:hidden; display:flex; flex-direction:column;">
+    <button id="closeLmsModal" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:5px 10px; font-size:16px; border-radius:5px; cursor:pointer; z-index:10;">X</button>
+
+    <div id="lmsCodeScreen" style="position:absolute; inset:0; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:15px; text-align:center; padding:20px;">
+      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png" style="width:150px;">
+      <h2>BizMart LMS</h2>
+      <p><em>"Empowering learning beyond the classroom"</em></p>
+      <input type="text" id="lmsCode" maxlength="6">
+      <button id="submitLmsCode">Submit</button>
+      <div id="lmsCodeError" style="color:red; display:none;">Incorrect code. Try again.</div>
+    </div>
+
+    <iframe id="lmsIframe" src="https://bizmart.dpdns.org/" style="display:none; width:100%; height:100%; border:none;"></iframe>
+  </div>
+</div>
+
+<!-- Tawk.to (UNCHANGED) -->
 <script>
   var Tawk_API = Tawk_API || {};
   Tawk_API.onLoad = function () {
@@ -243,6 +265,7 @@
   })();
 </script>
 
+<!-- Main JS -->
 <script>
   const openToolsBtn = document.getElementById("openToolsBtn");
   const toolList = document.getElementById("toolList");
@@ -255,19 +278,14 @@
   const bankCodeInput = document.getElementById("bankCode");
   const submitCode = document.getElementById("submitCode");
   const codeError = document.getElementById("codeError");
-
-  const correctBankCode = "080108";
-  const correctLmsCode = "330506";
+  const correctCode = "080108";
 
   openToolsBtn.addEventListener("click", () => {
-    toolList.style.display =
-      toolList.style.display === "flex" ? "none" : "flex";
+    toolList.style.display = toolList.style.display === "flex" ? "none" : "flex";
   });
 
   tawkTool.addEventListener("click", () => {
-    if (Tawk_API && Tawk_API.toggle) {
-      Tawk_API.toggle();
-    }
+    if (Tawk_API && Tawk_API.toggle) Tawk_API.toggle();
   });
 
   bankTool.addEventListener("click", () => {
@@ -283,7 +301,7 @@
   });
 
   submitCode.addEventListener("click", () => {
-    if (bankCodeInput.value === correctBankCode) {
+    if (bankCodeInput.value === correctCode) {
       codeScreen.style.display = "none";
       bankIframe.style.display = "flex";
     } else {
@@ -292,20 +310,43 @@
   });
 
   bankCodeInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      submitCode.click();
+    if (e.key === "Enter") submitCode.click();
+  });
+
+  /* LMS JS */
+  const lmsTool = document.getElementById("lmsTool");
+  const lmsModal = document.getElementById("lmsModal");
+  const closeLmsModal = document.getElementById("closeLmsModal");
+  const lmsCodeInput = document.getElementById("lmsCode");
+  const submitLmsCode = document.getElementById("submitLmsCode");
+  const lmsCodeError = document.getElementById("lmsCodeError");
+  const lmsCodeScreen = document.getElementById("lmsCodeScreen");
+  const lmsIframe = document.getElementById("lmsIframe");
+  const LMS_CODE = "330506";
+
+  lmsTool.addEventListener("click", () => {
+    lmsModal.style.display = "flex";
+    lmsCodeInput.value = "";
+    lmsCodeError.style.display = "none";
+    lmsCodeScreen.style.display = "flex";
+    lmsIframe.style.display = "none";
+  });
+
+  closeLmsModal.addEventListener("click", () => {
+    lmsModal.style.display = "none";
+  });
+
+  submitLmsCode.addEventListener("click", () => {
+    if (lmsCodeInput.value === LMS_CODE) {
+      lmsCodeScreen.style.display = "none";
+      lmsIframe.style.display = "flex";
+    } else {
+      lmsCodeError.style.display = "block";
     }
   });
 
-  // LMS Tool
-  const lmsTool = document.getElementById("lmsTool");
-  lmsTool.addEventListener("click", () => {
-    const code = prompt("Enter the 6-digit code for BizMart LMS:");
-    if (code === correctLmsCode) {
-      window.open("https://bizmart.dpdns.org/", "_blank");
-    } else {
-      alert("Incorrect LMS code. Try again.");
-    }
+  lmsCodeInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") submitLmsCode.click();
   });
 </script>
 
