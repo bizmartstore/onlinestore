@@ -8,6 +8,14 @@
   <meta property="og:url" content="https://bizmartstore.github.io/onlinestore/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="BizMart" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BizMart Online School Store" />
+  <meta name="twitter:description" content="Your one-stop online school store for quality supplies and essentials." />
+  <meta name="twitter:image" content="https://i.ibb.co/xtHngC2T/BIZMART-BRANDED-IMAGE.jpg" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -31,8 +39,7 @@
 
     .main-iframe {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: none;
@@ -51,9 +58,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       border-radius: 5px;
+    }
+
+    .fixed-rectangle img {
+      width: 24px;
+      height: 24px;
     }
 
     .tool-list {
@@ -83,8 +96,8 @@
       height: 24px;
     }
 
-    /* LMS Modal (same style as Bank) */
-    #lmsModal {
+    /* Bank Modal */
+    #bankModal {
       display: none;
       position: fixed;
       inset: 0;
@@ -94,7 +107,7 @@
       align-items: center;
     }
 
-    #lmsModalContent {
+    #bankModalContent {
       position: relative;
       width: 90%;
       height: 90%;
@@ -106,28 +119,28 @@
       flex-direction: column;
     }
 
-    #closeLmsModal {
+    #closeBankModal {
       position: absolute;
       top: 10px;
       right: 10px;
+      z-index: 10;
       background: red;
       color: white;
       border: none;
       padding: 5px 10px;
-      cursor: pointer;
+      font-size: 16px;
       border-radius: 5px;
-      z-index: 10;
+      cursor: pointer;
     }
 
-    #lmsIframe {
+    #bankIframe {
       width: 100%;
       height: 100%;
       border: none;
       flex: 1;
-      display: none;
     }
 
-    #lmsCodeScreen {
+    #codeScreen {
       position: absolute;
       inset: 0;
       background: white;
@@ -137,15 +150,30 @@
       justify-content: center;
       gap: 15px;
       text-align: center;
-      padding: 20px;
       z-index: 5;
+      padding: 20px;
     }
 
-    #lmsCodeScreen img {
+    #codeScreen img {
       width: 150px;
     }
 
-    #lmsError {
+    #codeScreen input {
+      padding: 10px;
+      font-size: 18px;
+      width: 60%;
+      text-align: center;
+    }
+
+    #codeScreen button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #codeError {
       color: red;
       display: none;
     }
@@ -163,71 +191,103 @@
   </div>
 
   <div class="tool-list" id="toolList">
-    <!-- LMS ICON (NEW) -->
-    <div class="tool-item" id="lmsTool" title="BizMart LMS">
-      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png">
-    </div>
-
-    <!-- BANK ICON -->
     <div class="tool-item" id="bankTool" title="BizMart Bank">
       <img src="https://i.ibb.co/jvfMPwZF/bank-3846904.png">
     </div>
 
-    <!-- CHAT -->
     <div class="tool-item" id="tawkTool" title="Support Chat">
       <img src="https://i.ibb.co/KcWhL1zn/speech-bubble-4081338.png">
     </div>
   </div>
 </div>
 
-<!-- LMS MODAL -->
-<div id="lmsModal">
-  <div id="lmsModalContent">
-    <button id="closeLmsModal">X</button>
+<!-- Bank Modal -->
+<div id="bankModal">
+  <div id="bankModalContent">
+    <button id="closeBankModal">X</button>
 
-    <div id="lmsCodeScreen">
-      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/xfwm2ny6ptpl/management_10620645.png">
-      <h2>Smart. Secure. Student Learning</h2>
-      <p>Enter the 6-digit code to access <b>BizMart LMS</b></p>
-      <input type="text" id="lmsCode" maxlength="6">
-      <button id="submitLmsCode">Submit</button>
-      <div id="lmsError">Incorrect code. Try again.</div>
+    <div id="codeScreen">
+      <img src="https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/bizmart-7an2vg/assets/kv07z7xo918a/bizmart_bank_logo-removebg-preview.png">
+      <h2>Fast. Easy. ABM Banking</h2>
+      <p>Enter the 6-digit code to access BizMart Bank:</p>
+      <input type="text" id="bankCode" maxlength="6">
+      <button id="submitCode">Submit</button>
+      <div id="codeError">Incorrect code. Try again.</div>
     </div>
 
-    <iframe id="lmsIframe" src="https://bizmart.dpdns.org/"></iframe>
+    <iframe id="bankIframe" src="https://bizmartstore.github.io/digitalbank/" style="display:none;"></iframe>
   </div>
 </div>
 
 <script>
-  const lmsTool = document.getElementById("lmsTool");
-  const lmsModal = document.getElementById("lmsModal");
-  const closeLmsModal = document.getElementById("closeLmsModal");
-  const lmsCodeScreen = document.getElementById("lmsCodeScreen");
-  const lmsIframe = document.getElementById("lmsIframe");
-  const lmsCode = document.getElementById("lmsCode");
-  const submitLmsCode = document.getElementById("submitLmsCode");
-  const lmsError = document.getElementById("lmsError");
+  var Tawk_API = Tawk_API || {};
+  Tawk_API.onLoad = function () {
+    Tawk_API.hideWidget();
+  };
+</script>
 
-  const lmsCorrectCode = "330506";
+<script>
+  (function () {
+    var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/694abe6662c26a197cb86e4c/1jd5vfg4d";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+    s0.parentNode.insertBefore(s1, s0);
+  })();
+</script>
 
-  lmsTool.addEventListener("click", () => {
-    lmsModal.style.display = "flex";
-    lmsCodeScreen.style.display = "flex";
-    lmsIframe.style.display = "none";
-    lmsCode.value = "";
-    lmsError.style.display = "none";
+<script>
+  const openToolsBtn = document.getElementById("openToolsBtn");
+  const toolList = document.getElementById("toolList");
+  const tawkTool = document.getElementById("tawkTool");
+  const bankTool = document.getElementById("bankTool");
+  const bankModal = document.getElementById("bankModal");
+  const closeBankModal = document.getElementById("closeBankModal");
+  const codeScreen = document.getElementById("codeScreen");
+  const bankIframe = document.getElementById("bankIframe");
+  const bankCodeInput = document.getElementById("bankCode");
+  const submitCode = document.getElementById("submitCode");
+  const codeError = document.getElementById("codeError");
+
+  const correctCode = "080108";
+
+  openToolsBtn.addEventListener("click", () => {
+    toolList.style.display =
+      toolList.style.display === "flex" ? "none" : "flex";
   });
 
-  closeLmsModal.addEventListener("click", () => {
-    lmsModal.style.display = "none";
+  tawkTool.addEventListener("click", () => {
+    if (Tawk_API && Tawk_API.toggle) {
+      Tawk_API.toggle();
+    }
   });
 
-  submitLmsCode.addEventListener("click", () => {
-    if (lmsCode.value === lmsCorrectCode) {
-      lmsCodeScreen.style.display = "none";
-      lmsIframe.style.display = "flex";
+  bankTool.addEventListener("click", () => {
+    bankModal.style.display = "flex";
+    codeScreen.style.display = "flex";
+    bankIframe.style.display = "none";
+    bankCodeInput.value = "";
+    codeError.style.display = "none";
+  });
+
+  closeBankModal.addEventListener("click", () => {
+    bankModal.style.display = "none";
+  });
+
+  submitCode.addEventListener("click", () => {
+    if (bankCodeInput.value === correctCode) {
+      codeScreen.style.display = "none";
+      bankIframe.style.display = "flex";
     } else {
-      lmsError.style.display = "block";
+      codeError.style.display = "block";
+    }
+  });
+
+  bankCodeInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      submitCode.click();
     }
   });
 </script>
